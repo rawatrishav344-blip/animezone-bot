@@ -1,0 +1,221 @@
+{
+  "config": {
+    "adminIds": [
+      5840296032
+    ],
+    "darkCode": "00700",
+    "contentSourceChannelId": -1004482181536
+  },
+  "animeList": [
+    {
+      "id": "a001",
+      "name": "That Time I Got Reincarnated as a Slime",
+      "meta": "Action • Fantasy • Dual Audio",
+      "ageRating": "16+",
+      "rating": 4.8,
+      "ratingCount": 1500,
+      "categoryTags": [
+        "trending",
+        "popular"
+      ],
+      "description": "A man is reborn as a slime in a fantasy world. With unique powers and loyal allies, he builds a powerful nation while protecting everyone he cares about.",
+      "thumbnail": "https://api.telegram.org/file/bot8663771330:AAGAqc2aep2tGKSLy-ZspnF97ZnYlC-kdyU/photos/file_10.jpg",
+      "uploadDate": "2026-08-04",
+      "episodes": [
+        {
+          "id": "e001",
+          "title": "1. New Days",
+          "episodeNumber": 1,
+          "description": "",
+          "duration": "23m",
+          "thumbnail": "https://api.telegram.org/file/bot8663771330:AAGAqc2aep2tGKSLy-ZspnF97ZnYlC-kdyU/photos/file_14.jpg",
+          "deliveryBotIndex": 0,
+          "sourceMessageIds": [
+            39,
+            40
+          ],
+          "sourceType": "episode",
+          "sourceMediaGroupId": "14286914302252781"
+        },
+        {
+          "id": "e002",
+          "title": "2. The Dungeon Evolves",
+          "episodeNumber": 2,
+          "description": "",
+          "duration": "24m",
+          "thumbnail": "https://api.telegram.org/file/bot8663771330:AAGAqc2aep2tGKSLy-ZspnF97ZnYlC-kdyU/photos/file_15.jpg",
+          "deliveryBotIndex": 1,
+          "sourceMessageIds": [
+            41,
+            42
+          ],
+          "sourceType": "episode",
+          "sourceMediaGroupId": "14286915480128277"
+        },
+        {
+          "id": "e003",
+          "title": "3. The Avatar Team Is Formed",
+          "episodeNumber": 3,
+          "description": "",
+          "duration": "23m",
+          "thumbnail": "https://api.telegram.org/file/bot8663771330:AAGAqc2aep2tGKSLy-ZspnF97ZnYlC-kdyU/photos/file_16.jpg",
+          "deliveryBotIndex": 2,
+          "sourceMessageIds": [
+            43,
+            44
+          ],
+          "sourceType": "episode",
+          "sourceMediaGroupId": "14286923192495069"
+        },
+        {
+          "id": "e004",
+          "title": "4. Invitation",
+          "episodeNumber": 4,
+          "description": "",
+          "duration": "23m",
+          "thumbnail": "https://api.telegram.org/file/bot8663771330:AAGAqc2aep2tGKSLy-ZspnF97ZnYlC-kdyU/photos/file_17.jpg",
+          "deliveryBotIndex": 0,
+          "sourceMessageIds": [
+            45,
+            46
+          ],
+          "sourceType": "episode",
+          "sourceMediaGroupId": "14286923938815437"
+        },
+        {
+          "id": "e005",
+          "title": "5. The First Step",
+          "episodeNumber": 5,
+          "description": "",
+          "duration": "23m",
+          "thumbnail": "https://api.telegram.org/file/bot8663771330:AAGAqc2aep2tGKSLy-ZspnF97ZnYlC-kdyU/photos/file_18.jpg",
+          "deliveryBotIndex": 1,
+          "sourceMessageIds": [
+            47
+          ],
+          "sourceType": "episode",
+          "sourceMediaGroupId": "14286931586456077"
+        },
+        {
+          "id": "e006",
+          "title": "6. The Council of the West",
+          "episodeNumber": 6,
+          "description": "",
+          "duration": "24m",
+          "thumbnail": "https://api.telegram.org/file/bot8663771330:AAGAqc2aep2tGKSLy-ZspnF97ZnYlC-kdyU/photos/file_19.jpg",
+          "deliveryBotIndex": 2,
+          "sourceMessageIds": [
+            49
+          ],
+          "sourceType": "episode",
+          "sourceMediaGroupId": "14286932158141069"
+        },
+        {
+          "id": "e007",
+          "title": "7. The Mastermind's Identity",
+          "episodeNumber": 7,
+          "description": "",
+          "duration": "24m",
+          "thumbnail": "https://api.telegram.org/file/bot8663771330:AAGAqc2aep2tGKSLy-ZspnF97ZnYlC-kdyU/photos/file_20.jpg",
+          "deliveryBotIndex": 0,
+          "sourceMessageIds": [
+            51,
+            52
+          ],
+          "sourceType": "episode",
+          "sourceMediaGroupId": "14286932795461533"
+        },
+        {
+          "id": "e008",
+          "title": "8. The Groundwork of Greed",
+          "episodeNumber": 8,
+          "description": "",
+          "duration": "24m",
+          "thumbnail": "https://api.telegram.org/file/bot8663771330:AAGAqc2aep2tGKSLy-ZspnF97ZnYlC-kdyU/photos/file_21.jpg",
+          "deliveryBotIndex": 1,
+          "sourceMessageIds": [
+            53
+          ],
+          "sourceType": "episode",
+          "sourceMediaGroupId": "14286933537108765"
+        },
+        {
+          "id": "e009",
+          "title": "9. Investigating the Ruins",
+          "episodeNumber": 9,
+          "description": "",
+          "duration": "24m",
+          "thumbnail": "https://api.telegram.org/file/bot8663771330:AAGAqc2aep2tGKSLy-ZspnF97ZnYlC-kdyU/photos/file_22.jpg",
+          "deliveryBotIndex": 2,
+          "sourceMessageIds": [
+            55
+          ],
+          "sourceType": "episode",
+          "sourceMediaGroupId": "14286934526220669"
+        },
+        {
+          "id": "e010",
+          "title": "10. The Master of Greed",
+          "episodeNumber": 10,
+          "description": "",
+          "duration": "23m",
+          "thumbnail": "https://api.telegram.org/file/bot8663771330:AAGAqc2aep2tGKSLy-ZspnF97ZnYlC-kdyU/photos/file_23.jpg",
+          "deliveryBotIndex": 0,
+          "sourceMessageIds": [
+            57
+          ],
+          "sourceType": "episode",
+          "sourceMediaGroupId": "14286935256591997"
+        }
+      ],
+      "sourceMessageIds": [
+        33
+      ],
+      "sourceType": "anime",
+      "sourceMediaGroupId": null
+    },
+    {
+      "id": "a002",
+      "name": "Wistoria: Wand and Sword Season 1",
+      "meta": "Action • Fantasy • Dual Audio",
+      "ageRating": "13+",
+      "rating": 4.7,
+      "ratingCount": 1200,
+      "categoryTags": [
+        "trending",
+        "popular"
+      ],
+      "description": "A boy without magic enters a magical academy. With his powerful sword skills, he fights to prove his worth in a world ruled by magic.",
+      "thumbnail": "https://api.telegram.org/file/bot8663771330:AAGAqc2aep2tGKSLy-ZspnF97ZnYlC-kdyU/photos/file_24.jpg",
+      "uploadDate": "2026-08-04",
+      "episodes": [],
+      "sourceMessageIds": [
+        59
+      ],
+      "sourceType": "anime",
+      "sourceMediaGroupId": null
+    }
+  ],
+  "exclusiveContent": [],
+  "announcements": [],
+  "channels": [],
+  "deliveryBots": [
+    {
+      "username": "signal_deliver_1_bot",
+      "active": true
+    },
+    {
+      "username": "signal_deliver_2_bot",
+      "active": true
+    },
+    {
+      "username": "signal_deliver_3_bot",
+      "active": false
+    }
+  ],
+  "users": {
+    "5840296032": {
+      "lastAppMessageId": 173
+    }
+  }
+}

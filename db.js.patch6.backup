@@ -1,0 +1,29 @@
+const fs = require("fs");
+const path = require("path");
+
+const DB_PATH = path.join(__dirname, "data.json");
+const BACKUP_PATH = path.join(__dirname, "data.backup.json");
+
+function backup() {
+  if (fs.existsSync(DB_PATH)) {
+    fs.copyFileSync(DB_PATH, BACKUP_PATH);
+  }
+}
+function read() {
+  const raw = fs.readFileSync(DB_PATH, "utf-8");
+  return JSON.parse(raw);
+}
+
+function write(data) {
+  backup();
+  fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2), "utf-8");
+}
+
+function update(mutateFn) {
+  const data = read();
+  const result = mutateFn(data);
+  write(data);
+  return result;
+}
+
+module.exports = { read, write, update, backup };
