@@ -4,7 +4,7 @@
   "description": "Main Telegram bot hosting the Mini App - Termux local deployment",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
     "delivery": "node delivery.js"
   },
   "dependencies": {
