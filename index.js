@@ -1,4 +1,6 @@
 const { Telegraf } = require("telegraf");
+const axios = require('axios');
+const FormData = require('form-data');
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -222,36 +224,45 @@ bot.on("edited_channel_post", async (ctx) => {
 async function getThumbnailUrl(firstMsg) {
   let fileId = null;
 
+  // Photo ya Video dhoondna
   if (firstMsg.photo && firstMsg.photo.length > 0) {
     fileId = firstMsg.photo[firstMsg.photo.length - 1].file_id;
   } else if (firstMsg.video) {
-    // Telegram Bot API mein video thumbnail field ka naam version ke hisaab se
-    // "thumb" ya "thumbnail" ho sakta hai — dono try karte hain
     fileId = firstMsg.video.thumb?.file_id || firstMsg.video.thumbnail?.file_id || null;
   }
 
-  if (!fileId) {
-    console.log("Thumbnail: koi file_id nahi mila (video ka thumbnail Telegram se turant nahi mila)");
-    return "https://via.placeholder.com/500x750";
-  }
+  if (!fileId) return "https://via.placeholder.com/500x750";
 
   try {
-    const link = await bot.telegram.getFileLink(fileId);
-    return link.href || link.toString();
+    // 1. Telegram se file path mangwana
+    const file = await bot.telegram.getFile(fileId);
+    const tgUrl = `https://api.telegram.org/file/bot${BOT_TOKEN}/${file.file_path}`;
+    
+    // 2. Photo download karke Graph.org par upload karna
+    const response = await axios.get(tgUrl, { responseType: 'stream' });
+    const form = new FormData();
+    form.append('file', response.data);
+
+    const upload = await axios.post('https://graph.org/upload', form, {
+      headers: form.getHeaders()
+    });
+    
+    // 3. Permanent link return karna
+    const permanentLink = `https://graph.org${upload.data[0].src}`;
+    console.log("Permanent Thumbnail Created:", permanentLink);
+    return permanentLink;
+
   } catch (err) {
-    console.log("Thumbnail fetch fail hua:", err.message);
+    console.log("Graph.org upload fail hua, placeholder bhej rahe hain:", err.message);
     return "https://via.placeholder.com/500x750";
   }
-}
-function getPhotoMessage(messages) {
-  return messages.find((m) => m.photo) || null;
 }
 // ---------------------------------------------------------------------
 // CONTENT SYNC HELPERS
 // ---------------------------------------------------------------------
 
 function findEpisodeByMessageId(data, messageId) {
-  for (const anime of data.animeList) {
+  for (const anime of data.animeList){
     const episode = anime.episodes.find(
       (ep) => (ep.sourceMessageIds || []).includes(messageId)
     );
