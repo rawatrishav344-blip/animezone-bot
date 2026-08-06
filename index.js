@@ -223,8 +223,6 @@ bot.on("edited_channel_post", async (ctx) => {
 });
 async function getThumbnailUrl(firstMsg) {
   let fileId = null;
-
-  // Photo ya Video dhoondna
   if (firstMsg.photo && firstMsg.photo.length > 0) {
     fileId = firstMsg.photo[firstMsg.photo.length - 1].file_id;
   } else if (firstMsg.video) {
@@ -234,11 +232,11 @@ async function getThumbnailUrl(firstMsg) {
   if (!fileId) return "https://via.placeholder.com/500x750";
 
   try {
-    // 1. Telegram se file path mangwana
+    // Fresh URL from Telegram
     const file = await bot.telegram.getFile(fileId);
     const tgUrl = `https://api.telegram.org/file/bot${BOT_TOKEN}/${file.file_path}`;
     
-    // 2. Photo download karke Graph.org par upload karna
+    // Upload to Graph.org
     const response = await axios.get(tgUrl, { responseType: 'stream' });
     const form = new FormData();
     form.append('file', response.data);
@@ -247,14 +245,14 @@ async function getThumbnailUrl(firstMsg) {
       headers: form.getHeaders()
     });
     
-    // 3. Permanent link return karna
     const permanentLink = `https://graph.org${upload.data[0].src}`;
-    console.log("Permanent Thumbnail Created:", permanentLink);
+    console.log("SUCCESS: Permanent Link Created ->", permanentLink);
     return permanentLink;
-
   } catch (err) {
-    console.log("Graph.org upload fail hua, placeholder bhej rahe hain:", err.message);
-    return "https://via.placeholder.com/500x750";
+    console.log("ERROR: Graph.org upload failed, using temporary link as backup.");
+    // Backup: link fetch karke return kar do agar upload fail ho
+    const link = await bot.telegram.getFileLink(fileId);
+    return link.href || link.toString();
   }
 }
 // ---------------------------------------------------------------------
