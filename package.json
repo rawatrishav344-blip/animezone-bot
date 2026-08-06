@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
+    "delivery": "node delivery.js"
   },
   "dependencies": {
     "telegraf": "^4.16.3",
