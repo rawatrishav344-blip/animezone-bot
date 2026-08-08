@@ -232,25 +232,18 @@ async function getThumbnailUrl(firstMsg) {
   if (!fileId) return "https://via.placeholder.com/500x750";
 
   try {
-    // Fresh URL from Telegram
     const file = await bot.telegram.getFile(fileId);
     const tgUrl = `https://api.telegram.org/file/bot${BOT_TOKEN}/${file.file_path}`;
-    
-    // Upload to Graph.org
     const response = await axios.get(tgUrl, { responseType: 'stream' });
     const form = new FormData();
     form.append('file', response.data);
-
-    const upload = await axios.post('https://graph.org/upload', form, {
-      headers: form.getHeaders()
-    });
+    const upload = await axios.post('https://graph.org/upload', form, { headers: form.getHeaders() });
     
     const permanentLink = `https://graph.org${upload.data[0].src}`;
-    console.log("SUCCESS: Permanent Link Created ->", permanentLink);
+    console.log("SUCCESS: Permanent Thumbnail Created ->", permanentLink);
     return permanentLink;
   } catch (err) {
-    console.log("ERROR: Graph.org upload failed, using temporary link as backup.");
-    // Backup: link fetch karke return kar do agar upload fail ho
+    console.log("ERROR: Graph.org failed, using fallback link.");
     const link = await bot.telegram.getFileLink(fileId);
     return link.href || link.toString();
   }
