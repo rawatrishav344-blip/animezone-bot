@@ -75,7 +75,7 @@ function sendJoinPrompt(ctx) {
 
 async function sendOpenAppButton(ctx) {
   const userId = ctx.from.id;
-  const data = db.read();
+  const data = await db.read();
   const prevMsgId = data.users[userId]?.lastAppMessageId;
 
   // Point 1: agar purana "Open App" message hai to pehle delete karo, spam-proof
@@ -93,7 +93,7 @@ async function sendOpenAppButton(ctx) {
     },
   });
 
-  db.update((d) => {
+  await db.update((d) => {
     d.users[userId] = { ...(d.users[userId] || {}), lastAppMessageId: sent.message_id };
   });
 }
@@ -119,7 +119,7 @@ bot.action("verify_join", async (ctx) => {
 });
 
 function isAdmin(userId) {
-  const data = db.read();
+  const data = await db.read();
   return data.config.adminIds.includes(userId);
 }
 
@@ -329,7 +329,7 @@ async function handleEditedPost(messages, caption) {
 
   if (isDelete) {
 
-    db.update((data) => {
+    await db.update((data) => {
 
       if (deleteEpisodeByMessageId(data, messageId)) {
         console.log("Episode deleted");
@@ -421,7 +421,7 @@ const alreadyExists = data =>
     (item.sourceMessageIds || []).some(id => sourceMessageIds.includes(id))
   );
 
-  db.update((data) => {
+  await db.update((data) => {
    if (alreadyExists(data)) {
   console.log("Duplicate exclusive ignored");
   return;
@@ -452,7 +452,7 @@ async function updateExclusiveByMessageId(messageId, mediaGroupId, messages, lin
     ? await getThumbnailUrl(messages[0])
     : null;
 
-  db.update((data) => {
+  await db.update((data) => {
 
     const item = (data.exclusiveContent || []).find(x =>
       (x.sourceMessageIds || []).includes(messageId)
