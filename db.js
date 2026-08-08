@@ -1,44 +1,34 @@
-const fs = require("fs");
-const path = require("path");
+const mongoose = require('mongoose');
 
-const DB_PATH = path.join(__dirname, "data.json");
-const BACKUP_PATH = path.join(__dirname, "data.backup.json");
+// ⚠️ APNA asli password <db_password> ki jagah dalna
+const MONGO_URI = "mongodb+srv://rawatrishav344_db_user:JkRMCPEDOK650JK3@cluster0.y9grler.mongodb.net/AnimeZoneDB?retryWrites=true&w=majority&appName=Cluster0";
 
-function backup() {
-  if (fs.existsSync(DB_PATH)) {
-    fs.copyFileSync(DB_PATH, BACKUP_PATH);
+mongoose.connect(MONGO_URI).then(() => console.log("✅ MongoDB Connected"));
+
+const AppSchema = new mongoose.Schema({
+  data: { type: Object, default: {} }
+}, { minimize: false });
+
+const AppModel = mongoose.model('AppData', AppSchema);
+
+async function read() {
+  let doc = await AppModel.findOne();
+  if (!doc) {
+    // Agar database khali hai toh naya banao
+    doc = await AppModel.create({ data: { animeList: [], exclusiveContent: [], announcements: [], channels: [], config: { adminIds: [5840296032], darkCode: "00700" }, users: {} } });
   }
-}
-function read() {
-  try {
-    const raw = fs.readFileSync(DB_PATH, "utf-8");
-    return JSON.parse(raw);
-  } catch (err) {
-    if (fs.existsSync(BACKUP_PATH)) {
-      console.log("Restoring database from backup...");
-      fs.copyFileSync(BACKUP_PATH, DB_PATH);
-      const raw = fs.readFileSync(DB_PATH, "utf-8");
-      return JSON.parse(raw);
-    }
-    throw err;
-  }
+  return doc.data;
 }
 
-function write(data) {
-  backup();
-  try {
-    fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2), "utf-8");
-  } catch (err) {
-    console.error("Database write failed:", err);
-    throw err;
-  }
+async function write(newData) {
+  await AppModel.findOneAndUpdate({}, { data: newData }, { upsert: true });
 }
 
-function update(mutateFn) {
-  const data = read();
+async function update(mutateFn) {
+  const data = await read();
   const result = mutateFn(data);
-  write(data);
+  await write(data);
   return result;
 }
 
-module.exports = { read, write, update, backup };
+module.exports = { read, write, update };
