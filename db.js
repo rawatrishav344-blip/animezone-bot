@@ -6,28 +6,49 @@ const MONGO_URI = "mongodb+srv://rawatrishav344_db_user:JkRMCPEDOK650JK3@cluster
 mongoose.connect(MONGO_URI).then(() => console.log("✅ MongoDB Connected"));
 
 const AppSchema = new mongoose.Schema({
-  data: { type: Object, default: {} }
+  data: { type: mongoose.Schema.Types.Mixed, default: {} }
 }, { minimize: false });
 
 const AppModel = mongoose.model('AppData', AppSchema);
+
+const DEFAULT_DATA = {
+  animeList: [],
+  exclusiveContent: [],
+  announcements: [],
+  channels: [],
+  deliveryBots: [],
+  config: { adminIds: [5840296032], darkCode: "00700" },
+  users: {}
+};
 
 async function read() {
   let doc = await AppModel.findOne();
   if (!doc) {
     // Agar database khali hai toh naya banao
-    doc = await AppModel.create({ data: { animeList: [], exclusiveContent: [], announcements: [], channels: [], config: { adminIds: [5840296032], darkCode: "00700" }, users: {} } });
+    doc = await AppModel.create({ data: DEFAULT_DATA });
   }
   return doc.data;
 }
 
 async function write(newData) {
-  await AppModel.findOneAndUpdate({}, { data: newData }, { upsert: true });
+  let doc = await AppModel.findOne();
+  if (!doc) {
+    doc = new AppModel({ data: newData });
+  } else {
+    doc.data = newData;
+  }
+  doc.markModified('data');
+  await doc.save();
 }
 
 async function update(mutateFn) {
-  const data = await read();
-  const result = mutateFn(data);
-  await write(data);
+  let doc = await AppModel.findOne();
+  if (!doc) {
+    doc = await AppModel.create({ data: DEFAULT_DATA });
+  }
+  const result = await mutateFn(doc.data);
+  doc.markModified('data');
+  await doc.save();
   return result;
 }
 
