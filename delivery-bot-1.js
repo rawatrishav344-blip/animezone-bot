@@ -47,7 +47,7 @@ bot.start(async (ctx) => {
     return ctx.reply("👋 AnimeZone Delivery Bot\n\nMini App se content select karke yahan aayein.");
   }
 
-  const data = db.read();
+  const data = await db.read();
 
   if (payload.startsWith("ep_")) {
     const [, animeId, epId] = payload.split("_");
