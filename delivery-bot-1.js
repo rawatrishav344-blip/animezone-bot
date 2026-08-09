@@ -71,6 +71,10 @@ bot.start(async (ctx) => {
   return sendContent(ctx, ids, item.title, true);
 });
 
+bot.catch((err, ctx) => {
+  console.log("⚠️ Bot error (ignored, bot still running):", err.message);
+});
+
 bot.launch();
 console.log("Delivery bot started.");
 
