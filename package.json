@@ -1,15 +1,18 @@
-{
-  "name": "animezone-delivery",
+"name": "animezone-bot",
   "version": "1.0.0",
-  "description": "AnimeZone Delivery Bots",
-  "main": "delivery.js",
+  "description": "MongoDB & Permanent Thumbnail Solution",
+  "main": "index.js",
   "scripts": {
-    "start": "node delivery.js",
+    "start": "node index.js"
     "delivery": "node delivery.js"
   },
   "dependencies": {
     "telegraf": "^4.16.3",
     "express": "^4.19.2",
+    "cors": "^2.8.5",
+    "body-parser": "^1.20.2",
+    "axios": "^1.6.0",
+    "form-data": "^4.0.0",
     "mongoose": "^8.0.0"
   }
 }
