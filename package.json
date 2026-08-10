@@ -1,10 +1,10 @@
 {
   "name": "animezone-bot",
   "version": "1.0.0",
-  "description": "MongoDB & Permanent Thumbnail Solution",
+  "description": "AnimeZone Bot + Delivery Bots",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
     "delivery": "node delivery.js"
   },
   "dependencies": {
