@@ -1,4 +1,5 @@
-"name": "animezone-bot",
+{
+  "name": "animezone-bot",
   "version": "1.0.0",
   "description": "MongoDB & Permanent Thumbnail Solution",
   "main": "index.js",
